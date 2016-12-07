@@ -24,7 +24,8 @@ The module is published in [PowerShell Gallery repository](https://www.powershel
 Install-Module -Name Xiaomi;
 ```
 In case the above installation using the package manager fails, you can install the module manually. Simply [download the latest version of the module](https://github.com/TDabasinskas/Xiaomi/archive/master.zip) and extract the *Xiaomi-master* folder into the folder, which is included in your `$ENV:PSModulePath`, e.h. *%userprofile%\Documents\WindowsPowerShell\Modules*. Make sure to rename *Xiaomi-master* to *Xiaomi* afterwards.
-To confirm the module is successfully installed and see all the available functions, use the following command
+
+To confirm the module is successfully installed and see all the available functions, use the following command:
 ```powershell
 Get-Command -Module Xiaomi;
 ```
