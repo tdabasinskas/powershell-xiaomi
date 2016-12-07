@@ -29,7 +29,8 @@ Function Disconnect-XiaomiHome
         [Parameter(
             Position = 0,
             Mandatory = $TRUE,
-            ValueFromPipeline = $TRUE
+            ValueFromPipeline = $TRUE,
+            ValueFromPipelineByPropertyName = $TRUE
         )]
         [XiaomiConnection]$Connection
     )
