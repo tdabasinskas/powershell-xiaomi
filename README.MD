@@ -1,3 +1,5 @@
+![logo](https://cloud.githubusercontent.com/assets/7723360/20984979/2284bb0a-bccb-11e6-9f8d-939c2ed43125.png)
+
 ## Description
 This is a [PowerShell](https://msdn.microsoft.com/powershell) module, which allows to interact with [**Xiaomi Mi Smart Home**](http://xiaomi-mi.com/mi-smart-home) devices programmatically. The module contains a group of functions, that you can easily integrate with other scripts and tools, to work with the information provivided by the Xiaomi Smart Home sensors. One of such cases, can be using this script to query the temperature data from the temperature sensor regually and then using some other script or a tool to draw temperature graphs.
 
