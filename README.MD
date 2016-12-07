@@ -18,6 +18,17 @@ Currently, the number of supported devices is limited, as well as only read-only
  1. Activate the first option and click the right Chinese button (probably meaning *OK*) at the bottom. The developer mode should be active now.
 1. You also need [Windows Management Framework 5.0](https://www.microsoft.com/en-us/download/details.aspx?id=50395) (or above) to use the module.
 
+## Installation
+The module is published in [PowerShell Gallery repository](https://www.powershellgallery.com/packages/Xiaomi/0.1), so the easiest way to install it is from there. Simply run the following command in you PowerShell prompt:
+```powershell
+Install-Module -Name Xiaomi;
+```
+To confirm the module is successfully installed and see all the available functions, use the following command
+
+
+```powershell
+Get-Command -Module Xiaomi;
+```
 ## Examples
 ### Getting the key information about the gateway(s)
 The following example can be used as the simplest test to see if all (any) gateway devices on the network are reachable.
