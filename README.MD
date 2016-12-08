@@ -29,6 +29,14 @@ To confirm the module is successfully installed and see all the available functi
 ```powershell
 Get-Command -Module Xiaomi;
 ```
+## Functions
+Currently, the module contains the following functions:
+- [Connect-XiaomiHome](./Docs/Connect-XiaomiHome.md)
+- [Disconnect-XiaomiHome](./Docs/Disconnect-XiaomiHome.md)
+- [Get-XiaomiGateway](./Docs/Get-XiaomiGateway.md)
+- [Get-XiaomiSensor](./Docs/Get-XiaomiSensor.md)
+- [Get-XiaomiTemperature](./Docs/Get-XiaomiTemperature.md)
+
 ## Examples
 ### Getting the key information about the gateway(s)
 The following example can be used as the simplest test to see if all (any) gateway devices on the network are reachable.
