@@ -18,10 +18,10 @@ using module ..\Classes\XiaomiSensor.psm1;
     [XiaomiSensor[]]. The list of sensors attached to the gateway(s)
 .EXAMPLE
     C:\PS> Connect-XiaomiHome | Get-XiaomiGateway | Get-XiaomiSensor | FT
-    Gateway       SID            ShortID Model     RawData
-    -------       ---            ------- -----     -------
-    XiaomiGateway 158d0001178e6b   55693 sensor_ht @{temperature=2265; humidity=3745}
-    XiaomiGateway 158d00010f7446   21438 sensor_ht @{temperature=-267; humidity=6700}
+    Gateway       SID            ShortID Model      Token           RawData
+    -------       ---            ------- -----      -------         -------
+    XiaomiGateway 158d0001178e6b   55693 sensor_ht  a1d700000lmn03  @{temperature=2265; humidity=3745}
+    XiaomiGateway 158d00010f7446   21438 sensor_ht  a1d700000lmn03  @{temperature=-267; humidity=6700}
 #>
 Function Get-XiaomiSensor
 {
