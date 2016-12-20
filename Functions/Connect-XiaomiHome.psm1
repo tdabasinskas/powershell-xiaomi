@@ -28,6 +28,7 @@ using module ..\Classes\XiaomiConnection.psm1;
     Socket            : System.Net.Sockets.UdpClient
     IsAlive           : True
     LocalPort         : 9882
+    LocalEndpoint     : 0.0.0.0:9882
     MulticastGroup    : 224.0.0.50
     MulticastPeerPort : 4321
 #>
