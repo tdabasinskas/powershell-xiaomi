@@ -25,6 +25,7 @@ Connect-XiaomiHome
 Socket            : System.Net.Sockets.UdpClient
 IsAlive           : True
 LocalPort         : 9882
+LocalEndpoint     : 0.0.0.0:9882
 MulticastGroup    : 224.0.0.50
 MulticastPeerPort : 4321
 
@@ -38,7 +39,7 @@ as per Xiaomi documentation
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -54,7 +55,7 @@ If not specified, 4321 is used, as per Xiaomi documentation
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -71,7 +72,7 @@ is used, as per Xiaomi documentation
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 3
