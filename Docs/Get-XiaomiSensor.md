@@ -18,7 +18,7 @@ In addition, it also trys querying each sensor, to get some key information abou
 
 ### -------------------------- EXAMPLE 1 --------------------------
 ```
-Connect-XiaomiHome | Get-XiaomiGateway | Get-XiaomiSensor | FT
+Connect-XiaomiSession | Get-XiaomiGateway | Get-XiaomiSensor | FT
 ```
 
 Gateway       SID            ShortID Model      Token           RawData

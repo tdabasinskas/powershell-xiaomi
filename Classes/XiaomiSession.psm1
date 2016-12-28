@@ -13,15 +13,13 @@ using namespace System.Diagnostics;
     local UDP server. The server is used to communicate (send commands and receive responses) with multiple Xiaomi
     Gateway devices, as well as the sensors attached to them.
 #>
-Class XiaomiConnection
+Class XiaomiSession
 {
     #region Properties
     # UDP socket instance
     [UdpClient]$Socket;
     # Socket status (is is active?)
     [Bool]$IsAlive;
-    # The UDP port to be used to listen on the local computer
-    [Int]$LocalPort;
     # Local endpoint:
     [IPEndpoint]$LocalEndpoint;
     # Multicast group, which Xiaomi devices belong to
@@ -36,22 +34,28 @@ Class XiaomiConnection
         Class constructor, responsible for initating the default values
     .PARAMETER socket
         UDP socket instance
-    .PARAMETER LocalPort
+    .PARAMETER localPort
         The UDP port to be used to listen on the local computer
     .PARAMETER multicastGroup
         Multicast group, which Xiaomi devices belong to
     .PARAMETER multicastPeerPort
         The multicast peer port, used for Xiaomi gateway discovery
     #>
-    XiaomiConnection([UdpClient]$socket, [Int]$localPort, [IPAddress]$multicastGroup, [Int]$multicastPeerPort)
+    XiaomiSession([UdpClient]$socket, [String]$localIP, [Int]$localPort, [IPAddress]$multicastGroup,
+        [Int]$multicastPeerPort)
     {
         $This.Socket = $socket;
-        $This.LocalPort = $localPort;
         $This.MulticastGroup = $multicastGroup;
         $This.MulticastPeerPort = $multicastPeerPort;
         $This.IsAlive = $TRUE;
-        # Set up the local endpoint:
-        $This.LocalEndpoint = [XiaomiConnection]::CreateEndpoint([IPAddress]::Any, $This.LocalPort);
+        # Try parse the IP address or use ANY if it fails:
+        Try {
+            $localIPAddress = [IpAddress]::Parse($localIP);
+        } Catch {
+            $localIPAddress = [IPAddress]::Any;
+        }
+        # Create the endpoint:
+        $This.LocalEndpoint = [XiaomiSession]::CreateEndpoint($localIPAddress, $localPort);
     }
     #endregion
 

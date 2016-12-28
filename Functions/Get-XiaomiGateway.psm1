@@ -1,5 +1,5 @@
 #region Namespaces/Modules
-using module ..\Classes\XiaomiConnection.psm1;
+using module ..\Classes\XiaomiSession.psm1;
 using module ..\Classes\XiaomiGateway.psm1;
 #endregion
 
@@ -13,14 +13,14 @@ using module ..\Classes\XiaomiGateway.psm1;
 .PARAMETER connection
     Reference to an existing connection
 .INPUTS
-    [XiaomiConnection]. Connection object
+    [XiaomiSession]. Connection object
 .OUTPUTS
     [XiaomiGateway[]]. Single or multiple gateway objects
 .EXAMPLE
-    C:\PS> Connect-XiaomiHome | Get-XiaomiGateway;
+    C:\PS> Connect-XiaomiSession | Get-XiaomiGateway;
     Connection       SID          IP        Port
     ----------       ---          --        ----
-    XiaomiConnection f0b429b43e53 10.1.3.10 9898
+    XiaomiSession f0b429b43e53 10.1.3.10 9898
 #>
 Function Get-XiaomiGateway
 {
@@ -34,7 +34,8 @@ Function Get-XiaomiGateway
             Mandatory = $TRUE,
             ValueFromPipeline = $TRUE
         )]
-        [XiaomiConnection]$Connection
+        [XiaomiSession]
+        $Connection
     )
     #endregion
     PROCESS
@@ -42,7 +43,7 @@ Function Get-XiaomiGateway
         # Initiate some variables:
         [XiaomiGateway[]]$gateways = @();
         # Set the endpoints:
-        $endpoint = [XiaomiConnection]::CreateEndpoint($Connection.MulticastGroup, $Connection.MulticastPeerPort);
+        $endpoint = [XiaomiSession]::CreateEndpoint($Connection.MulticastGroup, $Connection.MulticastPeerPort);
         # Try sending WHOIS command and getting the response:
         Try {
             $Connection.Send($endpoint, @{cmd = 'whois'});

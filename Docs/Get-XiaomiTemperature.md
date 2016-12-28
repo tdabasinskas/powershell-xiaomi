@@ -17,7 +17,7 @@ information.
 
 ### -------------------------- EXAMPLE 1 --------------------------
 ```
-Connect-XiaomiHome | Get-XiaomiGateway | Get-XiaomiSensor | Get-XiaomiTemperature | FT
+Connect-XiaomiSession | Get-XiaomiGateway | Get-XiaomiSensor | Get-XiaomiTemperature | FT
 ```
 
 SID            ShortID TemperatureC TemperatureF Humidity Gateway

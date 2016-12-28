@@ -6,7 +6,7 @@ Contacts the gateway(s) and gets their information
 ## SYNTAX
 
 ```
-Get-XiaomiGateway [-Connection] <XiaomiConnection>
+Get-XiaomiGateway [-Connection] <XiaomiSession>
 ```
 
 ## DESCRIPTION
@@ -19,12 +19,12 @@ other commands and interact with sensors later.
 
 ### -------------------------- EXAMPLE 1 --------------------------
 ```
-Connect-XiaomiHome | Get-XiaomiGateway;
+Connect-XiaomiSession | Get-XiaomiGateway;
 ```
 
 Connection       SID          IP        Port
 ----------       ---          --        ----
-XiaomiConnection f0b429b43e53 10.1.3.10 9898
+XiaomiSession f0b429b43e53 10.1.3.10 9898
 
 ## PARAMETERS
 
@@ -32,7 +32,7 @@ XiaomiConnection f0b429b43e53 10.1.3.10 9898
 Reference to an existing connection
 
 ```yaml
-Type: XiaomiConnection
+Type: XiaomiSession
 Parameter Sets: (All)
 Aliases: 
 
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### [XiaomiConnection]. Connection object
+### [XiaomiSession]. Connection object
 
 ## OUTPUTS
 

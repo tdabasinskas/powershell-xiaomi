@@ -1,5 +1,5 @@
 #region Namespaces/Modules
-using module .\XiaomiConnection.psm1;
+using module .\XiaomiSession.psm1;
 #endregion
 
 <#
@@ -14,7 +14,7 @@ Class XiaomiGateway
 {
     #region Properties
     # Reference to the network connection
-    [XiaomiConnection]$Connection;
+    [XiaomiSession]$Connection;
     # SID (ID) of the gateway
     [String]$SID;
     # The IP address, used by the gateway
@@ -36,7 +36,7 @@ Class XiaomiGateway
     .PARAMETER port
         Port of the local server, as reported by the gateway itself
     #>
-    XiaomiGateway([XiaomiConnection]$connection, [String]$SID, [IPAddress]$IP, [Int]$port)
+    XiaomiGateway([XiaomiSession]$connection, [String]$SID, [IPAddress]$IP, [Int]$port)
     {
         $This.Connection = $connection;
         $This.SID = $SID;

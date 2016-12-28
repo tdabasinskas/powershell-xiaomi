@@ -1,4 +1,4 @@
-# Disconnect-XiaomiHome
+# Disconnect-XiaomiSession
 
 ## SYNOPSIS
 Closes the connection with Xiaomi Smart Home network
@@ -6,7 +6,7 @@ Closes the connection with Xiaomi Smart Home network
 ## SYNTAX
 
 ```
-Disconnect-XiaomiHome [-Connection] <XiaomiConnection>
+Disconnect-XiaomiSession [-Connection] <XiaomiSession>
 ```
 
 ## DESCRIPTION
@@ -20,7 +20,7 @@ the port opened.
 
 ### -------------------------- EXAMPLE 1 --------------------------
 ```
-$Connection = Connect-XiaomiHome; Disconnect-XiaomiHome -Connection $Connection;
+$Connection = Connect-XiaomiSession; Disconnect-XiaomiSession -Connection $Connection;
 ```
 
 True
@@ -31,7 +31,7 @@ True
 Reference to an existing connection
 
 ```yaml
-Type: XiaomiConnection
+Type: XiaomiSession
 Parameter Sets: (All)
 Aliases: 
 
@@ -44,7 +44,7 @@ Accept wildcard characters: False
 
 ## INPUTS
 
-### [XiaomiConnection]. Connection object
+### [XiaomiSession]. Connection object
 
 ## OUTPUTS
 

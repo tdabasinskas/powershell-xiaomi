@@ -1,5 +1,5 @@
 #region Namespaces/Modules
-using module ..\Classes\XiaomiConnection.psm1;
+using module ..\Classes\XiaomiSession.psm1;
 using module ..\Classes\XiaomiGateway.psm1;
 using module ..\Classes\XiaomiSensor.psm1;
 #endregion
@@ -17,7 +17,7 @@ using module ..\Classes\XiaomiSensor.psm1;
 .OUTPUTS
     [XiaomiSensor[]]. The list of sensors attached to the gateway(s)
 .EXAMPLE
-    C:\PS> Connect-XiaomiHome | Get-XiaomiGateway | Get-XiaomiSensor | FT
+    C:\PS> Connect-XiaomiSession | Get-XiaomiGateway | Get-XiaomiSensor | FT
     Gateway       SID            ShortID Model      Token           RawData
     -------       ---            ------- -----      -------         -------
     XiaomiGateway 158d0001178e6b   55693 sensor_ht  a1d700000lmn03  @{temperature=2265; humidity=3745}
@@ -35,7 +35,8 @@ Function Get-XiaomiSensor
             Mandatory = $TRUE,
             ValueFromPipeline = $TRUE
         )]
-        [XiaomiGateway[]]$Gateway
+        [XiaomiGateway[]]
+        $Gateway
     )
     #endregion
     BEGIN
@@ -50,7 +51,7 @@ Function Get-XiaomiSensor
             # Try getting the list of sensors:
             Try {
                 # Set the endpoints:
-                $endpoint = [XiaomiConnection]::CreateEndpoint($_gateway.IP, $_gateway.Port);
+                $endpoint = [XiaomiSession]::CreateEndpoint($_gateway.IP, $_gateway.Port);
                 $_gateway.Connection.Send($endpoint, @{cmd = 'get_id_list'});
                 $data = $_gateway.Connection.Receive();
                 $token = $data.token;

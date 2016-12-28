@@ -1,4 +1,4 @@
-# Connect-XiaomiHome
+# Connect-XiaomiSession
 
 ## SYNOPSIS
 Initializes and returns a connection with Xiaomi Smart Home network
@@ -6,7 +6,8 @@ Initializes and returns a connection with Xiaomi Smart Home network
 ## SYNTAX
 
 ```
-Connect-XiaomiHome [[-MulticastGroup] <String>] [[-MulticastPeerPort] <Int32>] [[-LocalPort] <Int32>]
+Connect-XiaomiSession [[-MulticastGroup] <String>] [[-MulticastPeerPort] <Int32>] [[-LocalIP] <String>]
+ [[-LocalPort] <Int32>]
 ```
 
 ## DESCRIPTION
@@ -19,12 +20,11 @@ initial gateway discovery is being done via multicast.
 
 ### -------------------------- EXAMPLE 1 --------------------------
 ```
-Connect-XiaomiHome
+Connect-XiaomiSession
 ```
 
 Socket            : System.Net.Sockets.UdpClient
 IsAlive           : True
-LocalPort         : 9882
 LocalEndpoint     : 0.0.0.0:9882
 MulticastGroup    : 224.0.0.50
 MulticastPeerPort : 4321
@@ -39,7 +39,7 @@ as per Xiaomi documentation
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: 1
@@ -55,11 +55,26 @@ If not specified, 4321 is used, as per Xiaomi documentation
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
 Position: 2
 Default value: 4321
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LocalIP
+The IP of the local computer (useful if there are multiple active network adapters)
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: 3
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -72,10 +87,10 @@ is used, as per Xiaomi documentation
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: False
-Position: 3
+Position: 4
 Default value: 9882
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -85,7 +100,7 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### [XiaomiConnection]. An object, containing information about the initialized connection
+### [XiaomiSession]. An object, containing information about the initialized connection
 
 ## NOTES
 

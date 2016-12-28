@@ -1,5 +1,5 @@
 #region Namespaces/Modules
-using module ..\Classes\XiaomiConnection.psm1;
+using module ..\Classes\XiaomiSession.psm1;
 #endregion
 
 <#
@@ -12,14 +12,14 @@ using module ..\Classes\XiaomiConnection.psm1;
 .PARAMETER connection
     Reference to an existing connection
 .INPUTS
-    [XiaomiConnection]. Connection object
+    [XiaomiSession]. Connection object
 .OUTPUTS
     [Bool]. Result of the connection closing activity
 .EXAMPLE
-    C:\PS> $Connection = Connect-XiaomiHome; Disconnect-XiaomiHome -Connection $Connection;
+    C:\PS> $Connection = Connect-XiaomiSession; Disconnect-XiaomiSession -Connection $Connection;
     True
 #>
-Function Disconnect-XiaomiHome
+Function Disconnect-XiaomiSession
 {
     [CmdletBinding()]
     [OutputType([Bool])]
@@ -32,7 +32,8 @@ Function Disconnect-XiaomiHome
             ValueFromPipeline = $TRUE,
             ValueFromPipelineByPropertyName = $TRUE
         )]
-        [XiaomiConnection]$Connection
+        [XiaomiSession]
+        $Connection
     )
     #endregion
     PROCESS

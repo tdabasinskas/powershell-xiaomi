@@ -1,5 +1,5 @@
 #region Namespaces/Modules
-using module ..\Classes\XiaomiConnection.psm1;
+using module ..\Classes\XiaomiSession.psm1;
 using module ..\Classes\XiaomiGateway.psm1;
 using module ..\Classes\XiaomiSensor.psm1;
 using module ..\Classes\XiaomiTemperatureSensor.psm1;
@@ -18,7 +18,7 @@ using module ..\Classes\XiaomiTemperatureSensor.psm1;
 .OUTPUTS
     [XiaomiTemperatureSensor[]]. Temperature data from each thermometer sensor
 .EXAMPLE
-    C:\PS> Connect-XiaomiHome | Get-XiaomiGateway | Get-XiaomiSensor | Get-XiaomiTemperature | FT
+    C:\PS> Connect-XiaomiSession | Get-XiaomiGateway | Get-XiaomiSensor | Get-XiaomiTemperature | FT
         SID            ShortID TemperatureC TemperatureF Humidity Gateway
     ---            ------- ------------ ------------ -------- -------
     158d0001178e6b   55693        22.65        72.77    37.45 XiaomiGateway
@@ -36,7 +36,8 @@ Function Get-XiaomiTemperature
             Mandatory = $TRUE,
             ValueFromPipeline = $TRUE
         )]
-        [XiaomiSensor[]]$Sensor
+        [XiaomiSensor[]]
+        $Sensor
     )
     #endregion
     BEGIN
@@ -53,7 +54,7 @@ Function Get-XiaomiTemperature
             # Try getting the temperature data:
             Try {
                 # Set the endpoints:
-                $endpoint = [XiaomiConnection]::CreateEndpoint($_sensor.Gateway.IP, $_sensor.Gateway.Port);
+                $endpoint = [XiaomiSession]::CreateEndpoint($_sensor.Gateway.IP, $_sensor.Gateway.Port);
                 $_sensor.Gateway.Connection.Send($endpoint, @{cmd = 'read'; sid = $_sensor.SID});
                 $data = $_sensor.Gateway.Connection.Receive();
                 $thermometers += [XiaomiTemperatureSensor]::New($_sensor.Gateway, $data.sid, $data.model,

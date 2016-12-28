@@ -2,7 +2,7 @@
 using namespace System.Net;
 using namespace System.Net.Sockets;
 
-using module ..\Classes\XiaomiConnection.psm1;
+using module ..\Classes\XiaomiSession.psm1;
 #endregion
 
 <#
@@ -18,24 +18,25 @@ using module ..\Classes\XiaomiConnection.psm1;
 .PARAMETER MulticastPeerPort
     The number of multicast peer port, required for sending the initial message to the gateways on the network.
     If not specified, 4321 is used, as per Xiaomi documentation
+.PARAMETER LocalIP
+    The IP of the local computer (useful if there are multiple active network adapters)
 .PARAMETER LocalPort
     The number of the UDP port, which is going to be used to listen on the local computer. If not specified, 9882
     is used, as per Xiaomi documentation
 .OUTPUTS
-    [XiaomiConnection]. An object, containing information about the initialized connection
+    [XiaomiSession]. An object, containing information about the initialized connection
 .EXAMPLE
-    C:\PS> Connect-XiaomiHome
+    C:\PS> Connect-XiaomiSession
     Socket            : System.Net.Sockets.UdpClient
     IsAlive           : True
-    LocalPort         : 9882
     LocalEndpoint     : 0.0.0.0:9882
     MulticastGroup    : 224.0.0.50
     MulticastPeerPort : 4321
 #>
-Function Connect-XiaomiHome
+Function Connect-XiaomiSession
 {
     [CmdletBinding()]
-    [OutputType([XiaomiConnection])]
+    [OutputType([XiaomiSession])]
     #region Parameters
     PARAM(
         # Multicast group:
@@ -43,27 +44,37 @@ Function Connect-XiaomiHome
             Position = 0,
             Mandatory = $FALSE
         )]
-        [String]$MulticastGroup = '224.0.0.50',
+        [String]
+        $MulticastGroup = '224.0.0.50',
         # Multicast peer port:
         [Parameter(
             Position = 1,
             Mandatory = $FALSE
         )]
         [ValidateRange(0, 65534)]
-        [Int]$MulticastPeerPort = 4321,
-        # Local port:
+        [Int]
+        $MulticastPeerPort = 4321,
+        # Local IP:
         [Parameter(
             Position = 2,
             Mandatory = $FALSE
         )]
+        [String]
+        $LocalIP,
+        # Local port:
+        [Parameter(
+            Position = 3,
+            Mandatory = $FALSE
+        )]
         [ValidateRange(0, 65534)]
-        [Int]$LocalPort = 9882
+        [Int]
+        $LocalPort = 9882
     )
     #endregion
     PROCESS
     {
         # Make sure the local port is not in use:
-        If (-NOT ($NULL -EQ ($process = [XiaomiConnection]::CheckIfPortIsInUse($LocalPort)))) {
+        If (-NOT ($NULL -EQ ($process = [XiaomiSession]::CheckIfPortIsInUse($LocalPort)))) {
             Write-Error `
                 -Category ConnectionError `
                 -Message ("Cannot establish connection, because UDP port "` +
@@ -97,6 +108,6 @@ Function Connect-XiaomiHome
             Return;
         }
         # Return the connection object:
-        Return [XiaomiConnection]::New($socket, $LocalPort, $MulticastGroupAddress, $MulticastPeerPort);
+        Return [XiaomiSession]::New($socket, $LocalIP, $LocalPort, $MulticastGroupAddress, $MulticastPeerPort);
     }
 }
