@@ -3,28 +3,24 @@
 ![logo](https://cloud.githubusercontent.com/assets/7723360/20984979/2284bb0a-bccb-11e6-9f8d-939c2ed43125.png)
 
 ## Description
-This is a [PowerShell](https://msdn.microsoft.com/powershell) module, which allows to interact with
-[**Xiaomi Mi Smart Home**](http://xiaomi-mi.com/mi-smart-home) devices programmatically.The module contains a
-group of functions, that you can easily integrate with other scripts and tools, to work with the information
-provivided by the Xiaomi Smart Home sensors. One of such cases, can be using this script to query the temperature
-data from the temperature sensor regually and then using some other script or a tool to draw temperature graphs.
+This is a [PowerShell](https://msdn.microsoft.com/powershell) module, which allows programmatic interaction with [**Xiaomi Mi Smart Home**](http://xiaomi-mi.com/mi-smart-home) devices. The module contains a group of functions, that you can easily integrate with other scripts and tools in order to work with the information provivided by the Xiaomi Smart Home sensors. One of such cases can be using this module to regularly query the temperature data from the temperature sensor and then passing that data to some other script / tool which can draw temperature graphs.
 
 Currently, the number of supported devices is limited, as well as only read-only actions are supported.
-Anyhow, there are plans to provide support for additional sensors in the near future.
+However, there are plans to provide support for additional sensors in the near future.
 
 ## Prerequisites
 1. For starters, you need to have a
 [Xiaomi Mi Smart Home Gateway](http://xiaomi-mi.com/smart-home/xiaomi-mi-gateway-2).
-1. You probably want to have at least one sensor, e.g.
+1. You'll likely want to have at least one sensor, e.g.
 [temperature/humidity one](http://xiaomi-mi.com/smart-home/xiaomi-mi-temperature-humidity-sensor/), as well.
-1. To be able to access the gateway over the network, you must have developer mode unlocked by following these
+1. To be able to access the gateway over network, you must have the developer mode unlocked. This can be done by following these
 steps:
  1. Download the latest version of
  [MiHome application](https://play.google.com/store/apps/details?id=com.xiaomi.smarthome) to your Android device
  (yes, at the moment, developer mode can be enabled only via Android).
  1. Follow the in-app instructions to connect the application to your Xiaomi Mi Smart Home Gateway.
- 1. Once the Gateway is added, open the Gateway settings and devigate to *About* section.
- 1. At the bottom of *About* sections, there should be the version number listed. Click it multiple times until
+ 1. Once the Gateway is added, open the Gateway settings and navigate to the *About* section.
+ 1. At the bottom of the *About* section, there should be the version number listed. Click it multiple times until
  you see to additional options (both in Chinese) appearing above.
  1. Click the first new option (the one with the longer Chinese name).
  1. Take a note of the 16 symbol key you see on the second line. You might need this key for the write operations.
@@ -41,8 +37,7 @@ install it is from there. Simply run the following command in you PowerShell pro
 Install-Module -Name Xiaomi;
 ```
 In case the above installation using the package manager fails, you can install the module manually. Simply
-[download the latest version of the module](https://github.com/TDabasinskas/Xiaomi/archive/master.zip) and extract
-the *Xiaomi-master* folder into the folder, which is included in your `$ENV:PSModulePath`, e.g.
+[download the latest version of the module](https://github.com/TDabasinskas/Xiaomi/archive/master.zip) and extract the *Xiaomi-master* folder into the folder, which is included in your `$ENV:PSModulePath`, e.g.
 *%USERPROFILE%\Documents\WindowsPowerShell\Modules*. Make sure to rename *Xiaomi-master* to *Xiaomi* afterwards.
 
 To confirm the module is successfully installed and see all the available functions, use the following command:
